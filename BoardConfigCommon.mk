@@ -50,6 +50,9 @@ TARGET_NO_BOOTLOADER := true
 # Camera
 TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED := true
 
+# Camera Miui
+-include vendor/xiaomi/sweet-miuicamera/products/board.mk
+
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/configs/config.fs
 
