@@ -61,6 +61,9 @@ MALLOC_SVELTE := true
 MALLOC_SVELTE_FOR_LIBC32 := true
 TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED := true
 
+# Camera Miui
+-include vendor/xiaomi/sweet-miuicamera/products/board.mk
+
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 
