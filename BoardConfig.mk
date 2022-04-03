@@ -55,6 +55,9 @@ TARGET_INCLUDES_MIUI_CAMERA := true
 TARGET_CAMERA_PACKAGE_NAME := com.xiaomi.sessionparams.clientName
 TARGET_USES_MIUI_CAMERA := true
 
+# Camera Miui
+-include vendor/xiaomi/sweet-miuicamera/products/board.mk
+
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 
