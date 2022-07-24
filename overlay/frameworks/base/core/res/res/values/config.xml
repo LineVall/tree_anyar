@@ -699,4 +699,12 @@
        <item>app_cloning/delete_all_app_clones_enabled=true</item>
        <item>app_cloning/enable_app_cloning_building_blocks=true</item>
     </string-array>
+
+    <!-- The list of components which should be automatically disabled for a specific device. -->
+    <string-array name="config_deviceDisabledComponents" translatable="false">
+        <item>com.google.android.gms/com.google.android.gms.nearby.discovery.service.DiscoveryService</item>
+        <item>com.google.android.gms/com.google.android.gms.nearby.messages.service.NearbyMessagesService</item>
+        <item>com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver</item>
+        <item>com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver</item>
+    </string-array>
 </resources>
