@@ -210,6 +210,10 @@ SOONG_CONFIG_xiaomiSm6150Vars += \
 SOONG_CONFIG_xiaomiSm6150Vars_livedisplay_support_anti_flicker ?= true
 SOONG_CONFIG_xiaomiSm6150Vars_livedisplay_support_sunlight_enhancement ?= true
 
+# Vendor security patch level
+BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
@@ -217,9 +221,6 @@ BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
-
-# Vendor security patch level
-VENDOR_SECURITY_PATCH := 2023-11-01
 
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
