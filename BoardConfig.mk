@@ -93,6 +93,7 @@ TARGET_KERNEL_CONFIG := \
       vendor/sweet.config
 TARGET_KERNEL_ADDITIONAL_FLAGS := LLVM=1 LLVM_IAS=1
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sweet
+KERNEL_LD := LD=ld.lld
 
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0x880000
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom androidboot.console=ttyMSM0
