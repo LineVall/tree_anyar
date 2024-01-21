@@ -51,6 +51,7 @@ TARGET_NO_BOOTLOADER := true
 MALLOC_SVELTE := true
 MALLOC_SVELTE_FOR_LIBC32 := true
 TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED := true
+TARGET_USES_MIUI_CAMERA := true
 
 # Camera Miui
 -include vendor/xiaomi/sweet-miuicamera/products/board.mk
