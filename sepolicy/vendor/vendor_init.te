@@ -1,1 +1,4 @@
+set_prop(vendor_init, vendor_audio_prop)
+get_prop(platform_app, vendor_camera_prop)
+set_prop(vendor_init, vendor_display_prop)
 set_prop(vendor_init, vendor_fp_prop)
