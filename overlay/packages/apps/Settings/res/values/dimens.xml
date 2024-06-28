@@ -14,4 +14,10 @@
 <resources>
     <item name="fingerprint_sensor_location_fraction_x" type="fraction">69%</item>
     <item name="fingerprint_sensor_location_fraction_y" type="fraction">45%</item>
+
+    <!-- Whether to default to HQ mode. default: false -->
+    <bool name="config_HighQualityVideoDefault" translatable="false">true</bool>
+
+    <!-- Whether hardware video encoding is supported. default: true -->
+    <bool name="config_HardwareVideoEncode" translatable="false">false</bool>
 </resources>
