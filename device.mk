@@ -196,6 +196,7 @@ PRODUCT_PACKAGES += \
 
 # Include our private certificate
 -include vendor/unsa-priv/keys/keys.mk
+-include vendor/unsa-priv/extras/unsa.mk
 
 # Init scripts
 PRODUCT_COPY_FILES += \
