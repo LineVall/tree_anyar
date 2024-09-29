@@ -194,6 +194,10 @@ persist.sys.sf.color_saturation=1.0
 persist.sys.sf.native_mode=2
 persist.sys.sf.color_mode=9
 
+# Fingerprint
+persist.vendor.fingerprint.type=side
+persist.vendor.fingerprint.sensor_location=1080|990|200|local:4630946711218184577
+
 # Fluence
 ro.vendor.audio.sdk.fluencetype=fluence
 
