@@ -38,7 +38,6 @@ lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     (
         'com.qualcomm.qti.dpm.api@1.0',
-        'libgrallocutils': lib_fixup_remove,
         'libmmosal',
         'vendor.qti.hardware.fm@1.0',
         'vendor.qti.imsrtpservice@3.0',
@@ -48,7 +47,6 @@ lib_fixups: lib_fixups_user_type = {
         'libwpa_client',
     ): lib_fixup_remove,
 }
-
 
 blob_fixups: blob_fixups_user_type = {
     'system_ext/etc/init/wfdservice.rc': blob_fixup()
