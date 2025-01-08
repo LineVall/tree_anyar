@@ -89,6 +89,10 @@ PRODUCT_COPY_FILES += \
 # Call the MiuiCamera setup
 $(call inherit-product-if-exists, vendor/xiaomi/sweet-miuicamera/products/miuicamera.mk)
 
+PRODUCT_PACKAGES += \
+    libldacBT_abr \
+    libldacBT_enc
+
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
