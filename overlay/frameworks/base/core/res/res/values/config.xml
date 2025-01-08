@@ -705,4 +705,7 @@
         <item>com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver</item>
         <item>com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver</item>
     </string-array>
+
+    <!-- Turbulence effect -->
+    <bool name="config_mediaControlsTurbulenceByDefault">false</bool>
 </resources>
