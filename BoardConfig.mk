@@ -63,6 +63,7 @@ TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED := true
 TARGET_INCLUDES_MIUI_CAMERA := true
 TARGET_CAMERA_PACKAGE_NAME := com.xiaomi.sessionparams.clientName
 TARGET_USES_MIUI_CAMERA := true
+TARGET_CAMERA_SERVICE_EXT_LIB := //$(DEVICE_PATH):libcameraservice_extension.sm6150
 
 # Camera Miui
 -include vendor/xiaomi/sweet-miuicamera/products/board.mk
