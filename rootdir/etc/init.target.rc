@@ -33,6 +33,10 @@ on early-init
     setprop ro.soc.model ${ro.vendor.qti.soc_model}
     setprop vendor.usb.product_string ${ro.product.vendor.model}
 
+    # Dolby
+    mkdir /data/vendor/dolby 0770 media media
+    mkdir /data/vendor/multimedia 0775 system system
+
 on init
     # Goodix fingerprint
     chmod 0666 /dev/goodix_fp
