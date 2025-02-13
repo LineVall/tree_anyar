@@ -246,6 +246,7 @@ persist.rcs.supported=1
 ro.product.property_source_order=odm,vendor,product,system_ext,system
 
 # USB
+ro.usb.uvc.enabled=true
 sys.usb.mtp.batchcancel=1
 vendor.usb.controller=a600000.dwc3
 vendor.usb.diag.func.name=diag
