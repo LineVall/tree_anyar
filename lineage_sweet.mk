@@ -26,3 +26,8 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="sweet_global-user 13 TKQ1.221013.002 V14.0.9.0.TKFMIXM release-keys" \
     BuildFingerprint=Redmi/sweet_global/sweet:13/TKQ1.221013.002/V14.0.9.0.TKFMIXM:user/release-keys
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    RisingChipset="Redmi Note 10 Pro" \
+    RisingMaintainer="Unsatifsed27"
+RISING_MAINTAINER := Unsatifsed27
