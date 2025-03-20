@@ -12,10 +12,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from sweet device
 $(call inherit-product, device/xiaomi/sweet/device.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common Infinity stuff.
+INFINITY_BUILD_TYPE := OFFICIAL
+INFINITY_MAINTAINER := PrinceSumanth369
+$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_sweet
+PRODUCT_NAME := infinity_sweet
 PRODUCT_DEVICE := sweet
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi Note 10 Pro
@@ -26,3 +28,10 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="sweet_global-user 13 TKQ1.221013.002 V14.0.9.0.TKFMIXM release-keys" \
     BuildFingerprint=Redmi/sweet_global/sweet:13/TKQ1.221013.002/V14.0.9.0.TKFMIXM:user/release-keys
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.product.marketname=Redmi Note 10 Pro
+    ro.infinity.soc=Snapdragon™ 732G
+    ro.infinity.battery=5020mAh
+    ro.infinity.display=2400 x 1080 FHD+, 120 Hz
+    ro.infinity.camera=108MP+8MP+5MP+2MP
