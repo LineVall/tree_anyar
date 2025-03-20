@@ -137,6 +137,9 @@ dalvik.vm.systemuicompilerfilter=speed
 persist.vendor.data.iwlan.enable=true
 persist.vendor.data.mode=concurrent
 
+# Dolby
+persist.vendor.audio_fx.current=dolby
+
 # DPM
 persist.vendor.dpm.feature=1
 persist.vendor.dpm.nsrm.bkg.evt=3955
