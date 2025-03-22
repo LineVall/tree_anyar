@@ -59,12 +59,30 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V4-cpp.so'),
      'vendor/etc/init/init.batterysecret.rc': blob_fixup()
         .regex_replace(' +seclabel u:r:batterysecret:s0\n', ''),
-    'vendor/etc/init/init.mi_thermald.rc': blob_fixup()
+     'vendor/etc/init/init.mi_thermald.rc': blob_fixup()
         .regex_replace(' +seclabel u:r:mi_thermald:s0\n', ''),
      'vendor/lib64/camera/components/com.qti.node.watermark.so': blob_fixup()
         .add_needed('libpiex_shim.so'),
-    ('vendor/lib64/mediadrm/libwvdrmengine.so', 'vendor/lib64/libwvhidl.so'): blob_fixup()
+     ('vendor/lib64/mediadrm/libwvdrmengine.so', 'vendor/lib64/libwvhidl.so'): blob_fixup()
         .add_needed('libcrypto_shim.so'),
+        ('vendor/lib64/libalLDC.so', 'vendor/lib64/libalhLDC.so'): blob_fixup()
+         .clear_symbol_version('AHardwareBuffer_allocate')
+         .clear_symbol_version('AHardwareBuffer_describe')
+         .clear_symbol_version('AHardwareBuffer_lock')
+         .clear_symbol_version('AHardwareBuffer_release')
+         .clear_symbol_version('AHardwareBuffer_unlock'),
+     ('vendor/lib64/libarcsoft_hta.so', 'vendor/lib64/libarcsoft_super_night_raw.so', 'vendor/lib64/libhvx_interface.so', 'vendor/lib64/libmialgo_rfs.so'): blob_fixup()
+         .clear_symbol_version('remote_handle_close')
+         .clear_symbol_version('remote_handle_invoke')
+         .clear_symbol_version('remote_handle_open')
+         .clear_symbol_version('remote_handle64_close')
+         .clear_symbol_version('remote_handle64_invoke')
+         .clear_symbol_version('remote_handle64_open')
+         .clear_symbol_version('remote_register_buf_attr')
+         .clear_symbol_version('remote_register_buf')
+         .clear_symbol_version('rpcmem_alloc')
+         .clear_symbol_version('rpcmem_free')
+         .clear_symbol_version('rpcmem_to_fd'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
