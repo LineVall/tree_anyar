@@ -27,10 +27,3 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="sweet_global-user 13 TKQ1.221013.002 V14.0.9.0.TKFMIXM release-keys" \
     BuildFingerprint=Redmi/sweet_global/sweet:13/TKQ1.221013.002/V14.0.9.0.TKFMIXM:user/release-keys
-
-PRODUCT_SYSTEM_PROPERTIES += \
-     ro.product.marketname=Redmi Note 10 Pro
-     ro.infinity.soc=Snapdragon™ 732G
-     ro.infinity.battery=5020mAh
-     ro.infinity.display=2400 x 1080 FHD+, 120 Hz
-     ro.infinity.camera=108MP+8MP+5MP+2MP
