@@ -87,8 +87,9 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
 
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sweet
+TARGET_KERNEL_CONFIG += \
+      vendor/debugfs.config
 TARGET_KERNEL_CONFIG := \
-      vendor/debugfs.config \
       vendor/sdmsteppe-perf_defconfig \
       vendor/sweet.config
 
