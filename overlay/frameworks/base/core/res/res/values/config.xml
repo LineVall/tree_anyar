@@ -535,4 +535,10 @@
 
     <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
     <bool name="config_zramWriteback">true</bool>
+
+    <!-- The max scale for the wallpaper when it's zoomed in -->
+    <item name="config_wallpaperMaxScale" format="float" type="dimen">1</item>
+
+    <!-- Whether we use large screen shade header which takes only one row compared to QS header -->
+    <bool name="config_use_large_screen_shade_header">true</bool>
 </resources>
