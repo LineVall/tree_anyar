@@ -1,2 +1,5 @@
 # Allow to use release fence fds supplied by hal_camera
 allow surfaceflinger hal_camera:fd use;
+
+dontaudit surfaceflinger vendor_firmware_file:dir search;
+dontaudit surfaceflinger vendor_firmware_file:file read;
