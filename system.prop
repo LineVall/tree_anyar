@@ -16,6 +16,13 @@ persist.vendor.cne.feature=1
 # FUSE
 persist.sys.fuse.passthrough.enable=true
 
+# Infinity
+ro.product.marketname=Redmi Note 10 Pro
+ro.infinity.soc=Qualcomm SM7150 Snapdragon 732G (8 nm)
+ro.infinity.battery=5020 mAh
+ro.infinity.display=1080 x 2400 pixels, 120 Hz
+ro.infinity.camera=108Mp + 8Mp + 5 Mp + 2Mp
+
 # Media
 media.aac_51_output_enabled=true
 media.stagefright.enable-aac=true
