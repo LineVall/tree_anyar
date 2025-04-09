@@ -367,7 +367,7 @@ vendor/lib64/camera/com.qti.tuned.sweet_ofilm_s5kgw3_wide.bin|727410454921cbf6d5
 vendor/lib64/camera/com.qti.tuned.sweet_sunny_s5kgw3_wide.bin|34718fcf0dd5d3d30e383e02824145204772676d
 
 # Charger
-vendor/bin/hvdcp_opti
+vendor/bin/hvdcp_opti;RECOVERY_AVAILABLE
 
 # Certificate Authority
 vendor/app/CACertService/CACertService.apk
