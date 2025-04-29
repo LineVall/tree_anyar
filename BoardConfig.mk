@@ -59,9 +59,6 @@ TARGET_CAMERA_SERVICE_EXT_LIB := //$(DEVICE_PATH):libcameraservice_extension.sm6
 # Camera Miui
 -include vendor/xiaomi/sweet-miuicamera/products/board.mk
 
-# Camera Miui
--include vendor/xiaomi/sweet-miuicamera/products/board.mk
-
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 
