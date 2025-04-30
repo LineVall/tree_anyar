@@ -36,7 +36,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-    	<hal format="hidl">
         <name>android.hardware.sensors</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -45,6 +44,7 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
         <name>vendor.qti.hardware.cacert</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
