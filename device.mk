@@ -358,6 +358,9 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/xiaomi \
     vendor/qcom/opensource/usb/etc
 
+# Speed profile services and wifi-service to reduce RAM and storageAdd commentMore actions
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
+
 # System properties
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/properties/build_GLOBAL.prop:$(TARGET_COPY_OUT_ODM)/etc/build_GLOBAL.prop \
