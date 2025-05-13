@@ -12,6 +12,8 @@ LOCAL_OVERRIDES_PACKAGES := \
     Camera2 \
     CarrierLocation \
     CarrierMetrics \
+    Chrome64 \
+    Chrome \
     ConnMO \
     ConnMetrics \
     DCMO \
@@ -19,6 +21,9 @@ LOCAL_OVERRIDES_PACKAGES := \
     DiagnosticsToolPrebuilt \
     DMService \
     Drive \
+    FilesGoogle \
+    Gmail2 \
+    Gmail \
     GCS \
     GoogleCamera \
     Maps \
@@ -30,11 +35,9 @@ LOCAL_OVERRIDES_PACKAGES := \
     OemDmTrigger \
     OPScreenRecord \
     Ornament \
-    PixelLiveWallpaperPrebuilt \
+    Photos \
     PlayAutoInstallConfig \
     PrebuiltGmail \
-    RecorderPrebuilt \
-    SafetyHubPrebuilt \
     SCONE \
     ScribePrebuilt \
     Showcase \
@@ -45,6 +48,7 @@ LOCAL_OVERRIDES_PACKAGES := \
     SprintDM \
     SprintHM \
     USCCDM \
+    Velvet \
     Videos \
     VZWAPNLib \
     VzwOmaTrigger \
