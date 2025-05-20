@@ -7,7 +7,7 @@ ro.hardware.camera=xiaomi
 ro.miui.notch=1
 persist.sys.cam.skip_detach_image=true
 persist.vendor.qti.telephony.vt_cam_interface=2
-vendor.camera.aux.packagelist=com.android.camera,org.lineageos.aperture,org.lineageos.aperture.dev
+vendor.camera.aux.packagelist=com.android.camera,org.lineageos.aperture,org.lineageos.aperture.dev,com.snapchat.android
 
 # CNE
 persist.vendor.cne.feature=1
