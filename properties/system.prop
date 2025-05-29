@@ -19,6 +19,9 @@ dalvik.vm.dex2oat64.enabled=true
 pm.dexopt.first-boot=quicken
 pm.dexopt.bg-dexopt=everything
 
+# Display
+ro.surface_flinger.has_wide_color_display=true
+
 # FUSE
 persist.sys.fuse.passthrough.enable=true
 
