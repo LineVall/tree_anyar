@@ -29,55 +29,6 @@
 
 target=`getprop ro.board.platform`
 
-function configure_memory_parameters() {
-    # Set Memory parameters.
-    #
-    # Set per_process_reclaim tuning parameters
-    # All targets will use vmpressure range 50-70,
-    # All targets will use 512 pages swap size.
-    #
-    # Set Low memory killer minfree parameters
-    # 64 bit will use Google default LMK series.
-    #
-    # Set ALMK parameters (usually above the highest minfree values)
-    # vmpressure_file_min threshold is always set slightly higher
-    # than LMK minfree's last bin value for all targets. It is calculated as
-    # vmpressure_file_min = (last bin - second last bin ) + last bin
-
-    # Read adj series and set adj threshold for PPR and ALMK.
-    # This is required since adj values change from framework to framework.
-    adj_series=`cat /sys/module/lowmemorykiller/parameters/adj`
-    adj_1="${adj_series#*,}"
-    set_almk_ppr_adj="${adj_1%%,*}"
-
-    # PPR and ALMK should not act on HOME adj and below.
-    # Normalized ADJ for HOME is 6. Hence multiply by 6
-    # ADJ score represented as INT in LMK params, actual score can be in decimal
-    # Hence add 6 considering a worst case of 0.9 conversion to INT (0.9*6).
-    # For uLMK + Memcg, this will be set as 6 since adj is zero.
-    set_almk_ppr_adj=$(((set_almk_ppr_adj * 6) + 6))
-    echo $set_almk_ppr_adj > /sys/module/lowmemorykiller/parameters/adj_max_shift
-
-    # Calculate vmpressure_file_min as below & set for 64 bit:
-    # vmpressure_file_min = last_lmk_bin + (last_lmk_bin - last_but_one_lmk_bin)
-    minfree_series=`cat /sys/module/lowmemorykiller/parameters/minfree`
-    minfree_1="${minfree_series#*,}" ; rem_minfree_1="${minfree_1%%,*}"
-    minfree_2="${minfree_1#*,}" ; rem_minfree_2="${minfree_2%%,*}"
-    minfree_3="${minfree_2#*,}" ; rem_minfree_3="${minfree_3%%,*}"
-    minfree_4="${minfree_3#*,}" ; rem_minfree_4="${minfree_4%%,*}"
-    minfree_5="${minfree_4#*,}"
-
-    vmpres_file_min=$((minfree_5 + (minfree_5 - rem_minfree_4)))
-    echo $vmpres_file_min > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
-
-    echo "18432,23040,27648,64512,165888,225792" > /sys/module/lowmemorykiller/parameters/minfree
-
-    # Enable adaptive LMK for all targets &
-    # use Google default LMK series for all 64-bit targets >=2GB.
-    echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
-    echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
-}
-
 # Apply settings for sm6150
 # Set the default IRQ affinity to the silver cluster. When a
 # CPU is isolated/hotplugged, the IRQ affinity is adjusted
@@ -113,9 +64,6 @@ case "$soc_id" in
     echo 1 > /dev/stune/foreground/schedtune.prefer_idle
     echo 10 > /dev/stune/top-app/schedtune.boost
     echo 1 > /dev/stune/top-app/schedtune.prefer_idle
-
-    # Set Memory parameters
-    configure_memory_parameters
 
     # Enable bus-dcvs
     for device in /sys/devices/platform/soc
@@ -215,9 +163,6 @@ case "$soc_id" in
     echo 10 > /dev/stune/top-app/schedtune.boost
     echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 
-    # Set Memory parameters
-    configure_memory_parameters
-
     # Enable bus-dcvs
     for device in /sys/devices/platform/soc
     do
@@ -308,6 +253,82 @@ case "$soc_id" in
     echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
     ;;
 esac
+
+#!/vendor/bin/sh
+
+function configure_read_ahead_kb_values() {
+    MemTotalStr=$(grep MemTotal /proc/meminfo)
+    MemTotal=${MemTotalStr:16:8}
+
+    dmpts=$(find /sys/block/ -type d -name "queue" | grep -E "/(dm|mmc)[0-9]+/queue")
+
+    if [ $MemTotal -le 3145728 ]; then
+        for dm in $dmpts; do
+            echo 128 > "$dm/read_ahead_kb"
+            echo 128 > "$dm/nr_requests"
+        done
+    else
+        for dm in $dmpts; do
+            echo 512 > "$dm/read_ahead_kb"
+            echo 256 > "$dm/nr_requests"
+        done
+    fi
+}
+
+function configure_zram_parameters() {
+    MemTotalStr=$(grep MemTotal /proc/meminfo)
+    MemTotal=${MemTotalStr:16:8}
+
+    # Calculate total RAM in GB (rounded up), and set ZRAM size to half
+    let RamSizeGB="( $MemTotal / 1048576 ) + 1"
+    let zRamSizeMB="( $RamSizeGB * 1024 ) / 2"
+    diskSizeUnit=M
+
+    # Cap ZRAM to 4096MB to avoid overflow
+    if [ $zRamSizeMB -gt 4096 ]; then
+        zRamSizeMB=4096
+    fi
+
+    echo lz4 > /sys/block/zram0/comp_algorithm
+
+    if [ -f /sys/block/zram0/disksize ]; then
+        [ -f /sys/block/zram0/use_dedup ] && echo 1 > /sys/block/zram0/use_dedup
+
+        if [ $MemTotal -le 524288 ]; then
+            echo 402653184 > /sys/block/zram0/disksize
+        elif [ $MemTotal -le 1048576 ]; then
+            echo 805306368 > /sys/block/zram0/disksize
+        else
+            zramDiskSize="${zRamSizeMB}${diskSizeUnit}"
+            echo $zramDiskSize > /sys/block/zram0/disksize
+        fi
+
+        [ -e /sys/kernel/slab/zs_handle/store_user ] && echo 0 > /sys/kernel/slab/zs_handle/store_user
+        [ -e /sys/kernel/slab/zspage/store_user ] && echo 0 > /sys/kernel/slab/zspage/store_user
+
+        mkswap /dev/block/zram0
+        swapon /dev/block/zram0 -p 32758
+    fi
+}
+
+function configure_memory_parameters() {
+    echo 0 > /proc/sys/vm/page-cluster
+    echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
+    echo 60 > /proc/sys/vm/swappiness
+    echo 1 > /proc/sys/vm/watermark_scale_factor
+
+    MemTotalStr=$(grep MemTotal /proc/meminfo)
+    MemTotal=${MemTotalStr:16:8}
+
+    if [ "$MemTotal" -le 8388608 ]; then
+        echo 0 > /proc/sys/vm/watermark_boost_factor
+    fi
+
+    configure_zram_parameters
+    configure_read_ahead_kb_values
+}
+
+configure_memory_parameters
 
 # Enable PowerHAL hint processing
 setprop vendor.powerhal.init 1
